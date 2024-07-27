@@ -76,6 +76,16 @@ IGPIO::val_t PiGPIO::gpio_read(port_id_t gpio) {
     return res;
   }
 }
+void PiGPIO::gpio_set_isr_func(port_id_t gpio, unsigned edge, int timeout, gpioISRFunc_t f) {
+  // int gpioSetISRFunc(unsigned gpio, unsigned edge, int timeout, gpioISRFunc_t f)
+
+  ensure_running();
+  if (const auto res = gpioSetISRFunc(gpio,edge,timeout,f); res != 0) {
+    const auto msg =
+        fmt::format("Failed to read on GPIO {} (error: {})", gpio, res);
+    throw std::runtime_error(msg);
+  } 
+}
 void PiGPIO::delay(std::chrono::microseconds d) {
   ensure_running();
   gpioDelay(d.count());

@@ -7,7 +7,8 @@
                 "armhf",
                 "arm64"
             ]
-        }
+        },
+        "libi2c0"
     ],
     "build_deps": [
         {
@@ -17,6 +18,8 @@
                 "arm64"
             ]
         },
+        "libi2c0",
+        "libi2c-dev",
         "libfmt-dev",
         "catch2",
         "librange-v3-dev"

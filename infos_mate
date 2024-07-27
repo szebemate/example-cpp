@@ -1,0 +1,10 @@
+schroot -d / -u root -c buildroot -- apt install -y apt-utils
+
+
+schroot -d / -u root -c buildroot -- apt install -y libpigpio1:armhf librange-v3-dev:armhf libstdc++6:armhf libpigpio-dev:armhf libfmt-dev:armhf catch2:armhf
+
+echo "#root messagebus 4754 /usr/lib/dbus-1.0/dbus-daemon-launch-helper\n
+root root 4754 /usr/lib/dbus-1.0/dbus-daemon-launch-helper" > /var/lib/dpkg/statoverride
+
+
+echo  > /var/lib/dpkg/statoverride

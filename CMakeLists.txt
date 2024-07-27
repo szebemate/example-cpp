@@ -9,7 +9,7 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 # Effective Range CMake module like ER_DEPS, ER_PACK, etc.
 include(ERBuild NO_POLICY_SCOPE)
 
-set(sample_proj_ver 0.1.0)
+set(sample_proj_ver 0.1.1)
 
 project(er_example_cpp VERSION ${sample_proj_ver} DESCRIPTION "This is a sample project demonstrating the dev tooling capabilities")
 
@@ -26,6 +26,10 @@ find_package(Catch2  REQUIRED)
 # it just marks the artifacts for installation automatically
 # so the binaries will be packaged without any other user interaction
 ER_ADD_EXECUTABLE(er_example_cpp SOURCES src/main.cpp)
+
+# add lib i2c
+find_library(I2CLIB NAMES i2c )
+target_link_libraries(er_example_cpp PUBLIC ${I2CLIB} )
 
 # add gpio directory to the build
 add_subdirectory(gpio)

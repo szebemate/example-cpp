@@ -9,6 +9,7 @@
 #include <memory>
 #include <pigpio.h>
 
+
 class GPIOLibHandle {
 private:
   struct CtorTag {};
@@ -45,6 +46,8 @@ struct PiGPIO : public IGPIO {
   void gpio_write(port_id_t gpio, val_t val) override;
 
   val_t gpio_read(port_id_t gpio) override;
+  void gpio_set_isr_func(port_id_t gpio, unsigned edge, int timeout, gpioISRFunc_t f) ;
+
   void delay(std::chrono::microseconds) override;
 
 private:
